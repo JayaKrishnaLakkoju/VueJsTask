@@ -1,0 +1,40 @@
+body {
+    margin:0px;
+   }
+  
+  #shopping {
+    font-family: 'Roboto Slab', serif;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .header  {
+    height: 15vh;
+    width: 100vw;
+    border:1px solid orange;
+    background-color:orange;
+  }
+
+  .thisis{
+   margin-left:88%;
+  }
+    .adding{
+      margin-left:20px;
+      /* height:160px;
+      width:130px;
+      border:1px solid grey; */
+      width:300px;
+      height:250px;
+      border:1px solid #D3D3D3;
+      padding-left:10px;
+      padding-top:10px;
+    }
+
+    .checkout{
+      margin-left:20px;
+    }
+
+    .shop{
+      padding-left:20px;
+    }

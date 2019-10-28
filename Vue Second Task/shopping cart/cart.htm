@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>
+            shopping cart
+        </title>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" type="text/css" href="thiscart.css">
+    </head>
+<div id="shopping">
+    <div class="header">
+      <div class="thisis">
+        <h2>CART</h2>
+        <button @click="showCart = !showCart" v-show="!verified">
+          <!-- {{ items.length + (items.length > 1 || items.length === 0 ? " " : " item") }} -->
+          {{ items.length + " items"}}
+        </button>
+      </div>
+    </div>
+
+    <div class="cart" v-show="showCart">
+      <div v-show="items.length > 0">
+      
+          <h3 v-for="item in items">
+
+            <p>{{ item.quantity }} - {{ item.name }}</p>
+          </h3>
+      
+
+        <div><button @click="verified = true, showCart = false">OUT</button></div>
+        <div><button @click = "takeCart(item)">DISCARD</button></div>
+      </div>
+
+      <div v-show="items.length === 0">
+        <p>Your cart is empty!</p>
+      </div>
+    </div>
+
+    
+      <div class="shop" v-show="!verified">
+          <h2 v-for="item in shop">
+            <div class="adding">
+                <img :src="item.image" width="100px" height="100px"/>
+                <span>{{ item.name }}</span>
+                <p>Rs {{ item.price }}/-</p>
+              <button @click="placeCart(item)">ADD TO CART</button><br><br>
+            </div>
+          </h2>
+        
+      
+      
+      <div class="checkout" v-show="verified">
+        <h3>Your Cart</h3>
+        <h5 v-for="item in items">
+            <img :src="item.image" width="100px" height="100px"/>
+            {{ item.quantity }} - {{ item.name }}<span> {{ item.price * item.quantity }}</span></h5>
+        <hr width="70%"/>
+        <div>
+          <div>
+            <h5>Total: <span>{{ total | currency }}</span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const shop = [
+    {
+      image:'D:/vueexample/shopping cart/fashion1.jpg',
+      name: "Brown shirt",
+      price: 100,
+      quantity: 0
+    },
+    {
+      image:'D:/vueexample/shopping cart/fashion2.jpg',
+      name: "Combo Tees",
+      price: 300,
+      quantity: 0
+    },
+    {
+      image:'D:/vueexample/shopping cart/electronic1.jpg',
+      name: "ASUS",
+      price: 50000,
+      quantity: 0
+    },
+    {
+      image:'D:/vueexample/shopping cart/electronic2.jpg',
+      name: "DELL",
+      price: 40000,
+      quantity: 0
+    },
+  ];
+  
+  
+  //VUE INSTANCE IS CREATED AND WILL MOUNTED TO THE ELEMENT WITH APP
+  const vm = new Vue({
+    el: "#shopping",
+    data: {
+      items: [],
+      shop: shop,
+      showCart: false,
+      verified: false,
+      quantity: 1,
+    },
+    computed: {
+      total(){
+        var total = 0;
+        for(var i = 0; i < this.items.length; i++) {
+          total += this.items[i].price;
+        }
+        return total;
+      }
+    },
+    methods: {
+      placeCart(item) {
+        item.quantity =item.quantity + 1;
+        this.items.push(item);
+      },
+      takeCart(item) {
+        // item.quantity = item.quantity - 1;
+        this.items.splice(this.item, 1);
+      }
+    }
+  });
+</script>
+</html>

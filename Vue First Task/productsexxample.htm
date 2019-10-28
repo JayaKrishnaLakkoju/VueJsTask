@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> products...</title>
+
+        <style>
+
+            #products{
+                border : 1px solid red;
+                width  : 500px;
+                height : 100px;
+                margin : auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="products">
+
+            <ol>
+                <li v-for="pro in products" v-bind:key="pro.id">
+                    {{pro.name}} : {{ pro.product}}
+                </li>
+            </ol>
+
+        </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+
+            var products = new Vue({
+
+                el : '#products',
+
+                data : {
+
+                     products : [
+                              { name : 'electronics', product : 'portable blender'},
+                              { name : 'Furniture'  , product : 'Beds'},
+                              { name : 'Mens Grooming', product : 'Philips Trimmer'}
+                              ]
+                }
+       });
+
+
+        
+        
+        
+        </script>
+    </body>
+</html>
